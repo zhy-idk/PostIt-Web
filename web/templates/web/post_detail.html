@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row mb-4 align-items-center">
+            <div class="col">
+                <h1 class="mb-0">{{ post.title }}</h1>
+            </div>
+
+            {% if post.user == request.user %}
+            <div class="col-auto">
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-primary">Edit Post</a>
+            </div>
+            {% endif %}
+        </div>
+        
+        <p class="text-muted mb-4">{{ post.created_at }} by {{ post.user }}</p>
+
+        {% if post.banner %}
+            <img src="{{ post.banner.url }}" alt="Post Image" class="img-fluid mb-4 mx-auto d-block border" style="max-height: 400px;">
+        {% endif %}
+        <p class="lead">{{ post.description }}</p>
+    </div>
+{% endblock %}
