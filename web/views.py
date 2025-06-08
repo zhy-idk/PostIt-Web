@@ -6,7 +6,7 @@ from django.urls import reverse
 from api.models import PostModel
 
 def homepage(request):
-    post = PostModel.objects.all()
+    post = PostModel.objects.all().order_by('-created_at')
     return render(request, "web/home.html", {"posts": post})
 
 @login_required
@@ -47,7 +47,7 @@ def post_detail(request, post_id):
 
 @login_required
 def user_post(request, user_id):
-    post = PostModel.objects.filter(user_id=user_id)
+    post = PostModel.objects.filter(user_id=user_id).order_by('-created_at')
     return render(request, "web/user_post.html", {"posts": post})
 
 def register(request):

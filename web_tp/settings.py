@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework.authtoken',
     "rest_framework",
     "livereload",
     "api",
@@ -53,6 +54,15 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'livereload.middleware.LiveReloadScript',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        # optionally, keep basic for admin testing:
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+}
+
 
 ROOT_URLCONF = "web_tp.urls"
 
